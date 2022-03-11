@@ -1,8 +1,9 @@
 // TODO: Write your class in this file
 class softPlay {
-  constructor() {
+  constructor(maxOccupancy) {
     this.adults = 0;
     this.children = 0;
+    this.maxOccupancy = maxOccupancy || false;
   }
   occupancy() {
     //counts start at 0
@@ -11,6 +12,21 @@ class softPlay {
       children: this.children,
     };
   }
+
+
+  _maxLimit (numAdults,numChildren) {
+    const maxLimit = this.maxOccupancy - (numChildren + numAdults + this.children + this.adults) < 0
+    return this.maxOccupancy ? maxLimit : true
+  } 
+
+  //   _maxLimit (numAdults,numChildren) {
+  //     if (this.maxOccupancy === false) return true;
+
+  //   return (
+  //     this.children + numChildren + this.adults + numAdults <= this.maxOccupancy
+  //   };
+  // }
+
 
   enter(numAdults, numChildren) {
     // # 1
@@ -23,7 +39,10 @@ class softPlay {
     // # 2
     if (numAdults < numChildren) {
       return false;
-    } else {
+    }
+    if (!this._maxLimit (numAdults,numChildren))
+      return false
+    else {
       this.adults += numAdults;
       this.children += numChildren;
       return true;
@@ -55,6 +74,8 @@ class softPlay {
       this.children -= numChildren;
       return true;
     }
+
+
   }
 }
 // TODO: Change undefined to the name of your class
