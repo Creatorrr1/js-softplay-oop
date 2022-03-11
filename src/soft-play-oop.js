@@ -5,6 +5,7 @@ class softPlay {
     this.children = 0;
   }
   occupancy() {
+    //counts start at 0
     return {
       adults: this.adults,
       children: this.children,
@@ -12,12 +13,21 @@ class softPlay {
   }
 
   enter(numAdults, numChildren) {
-    const isSupervised = numAdults;
-    if (isSupervised) {
+    // # 1
+    // const isSupervised = numAdults;
+    // if (isSupervised) {
+    //   this.adults += numAdults;
+    //   this.children += numChildren;
+    //   return true;
+    // } else return false;
+    // # 2
+    if (numAdults < numChildren) {
+      return false;
+    } else {
       this.adults += numAdults;
       this.children += numChildren;
       return true;
-    } else return false;
+    }
   }
 
   // leave () {
@@ -29,6 +39,7 @@ class softPlay {
     const isSupervised = numAdults;
     if (numAdults > this.adults || numChildren > this.children) {
       return false;
+      //a child attempts to enter on their own, enter returns false
     } else if (
       this.adults - numAdults === 0 &&
       this.children - numChildren > 0
