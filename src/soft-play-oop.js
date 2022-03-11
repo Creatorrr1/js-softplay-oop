@@ -17,8 +17,7 @@ class softPlay {
       this.adults += numAdults;
       this.children += numChildren;
       return true;
-    }
-    else return false;
+    } else return false;
   }
 
   // leave () {
@@ -30,17 +29,20 @@ class softPlay {
     const isSupervised = numAdults;
     if (numAdults > this.adults || numChildren > this.children) {
       return false;
-    }
-    else if (this.adults - numAdults === 0 && this.children - numChildren > 0) {
+    } else if (
+      this.adults - numAdults === 0 &&
+      this.children - numChildren > 0
+    ) {
       return false;
-    }
-    else if (this.children - numChildren === 0 && this.adults - numAdults > 0) {
+    } else if (
+      this.children - numChildren === 0 &&
+      this.adults - numAdults > 0
+    ) {
       return false;
-    }
-    else if (isSupervised) {
+    } else if (isSupervised) {
       this.adults -= numAdults;
       this.children -= numChildren;
-      return true
+      return true;
     }
   }
 }
