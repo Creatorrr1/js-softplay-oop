@@ -3,7 +3,7 @@ class softPlay {
   constructor(maxOccupancy) {
     this.adults = 0;
     this.children = 0;
-    this.maxOccupancy = maxOccupancy || false;
+    this.maxOccupancy = maxOccupancy || false
   }
   occupancy() {
     //counts start at 0
@@ -13,19 +13,20 @@ class softPlay {
     };
   }
 
-
-  _maxLimit (numAdults,numChildren) {
-    const maxLimit = this.maxOccupancy - (numChildren + numAdults + this.children + this.adults) < 0
-    return this.maxOccupancy ? maxLimit : true
-  } 
-
-  //   _maxLimit (numAdults,numChildren) {
-  //     if (this.maxOccupancy === false) return true;
-
-  //   return (
-  //     this.children + numChildren + this.adults + numAdults <= this.maxOccupancy
-  //   };
+  // return false if we havent reached max limit
+  // return true if max limit is exceeded
+  // if max occupancy is undefined or not given to us return
+  // _maxLimit (numAdults,numChildren) {
+  //   const maxLimit = this.maxOccupancy - (numChildren + numAdults + this.children + this.adults) <= 0
+  //   return this.maxOccupancy ? maxLimit : true;
   // }
+    _maxLimit (numAdults,numChildren) {
+      if (this.maxOccupancy === false) return true;
+
+    return (
+      this.children + numChildren + this.adults + numAdults <= this.maxOccupancy
+    );
+  }
 
 
   enter(numAdults, numChildren) {
